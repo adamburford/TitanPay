@@ -5,6 +5,19 @@
 package com.titanpay.accounting;
 
 public class Address {
+	
+	// Fields
+	
+	private String streetAddress;
+	private String city;
+	private String state;
+	private int zip;
+	
+	// Methods
+	public String getAddress() {
+		return streetAddress + ' ' + city + ", " + state + ' ' + zip;
+	}
+	
 	// Constructor
 	public Address(String streetAddress, String city, String state, int zip) {
 		this.streetAddress = streetAddress;
@@ -12,45 +25,4 @@ public class Address {
 		this.state = state;
 		this.zip = zip;
 	}
-	
-	// Fields
-	private String streetAddress;
-	private String city;
-	private String state;
-	private int zip;
-	
-	// Getters
-	public String getStreetAddress() {
-		return streetAddress;
-	}
-	public String getCity() {
-		return city;
-	}
-	public String getState() {
-		return state;
-	}
-	public int getZip() {
-		return zip;
-	}
-	
-	// Setters
-	public void setStreetAddress(String streetAddress) {
-		this.streetAddress = streetAddress;
-	}
-	public void setCity(String city) {
-		this.city = city;
-	}
-	public void setState(String state) {
-		this.state = state;
-	}
-	public void setZip(int zip) {
-		this.zip = zip;
-	}
-
-	// Methods
-	public String getAddress() {
-		return streetAddress + ' ' + city + ", " + state + ' ' + zip;
-	}
-	
-
 }
