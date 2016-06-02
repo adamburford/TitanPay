@@ -6,25 +6,53 @@ package com.titanpay.accounting;
 
 public class Employee {
 
-	// Fields
-	private int employeeId;
-	private String firstName;
-	private String lastName;
-	private double hourlyRate;
-	private double weeklyDues;
+	// Constructor
+	public Employee(int employeeId, String firstName, String lastName, double weeklyDues) {
+		this.employeeId = employeeId;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.weeklyDues = weeklyDues;
+	}
 	
-	// Methods
+	// Fields
+	protected int employeeId;
+	protected String firstName;
+	protected String lastName;
+	protected double weeklyDues;
+	
+	/* Methods */
+	
+	// Getters
+	public int getEmployeeId() {
+		return employeeId;
+	}
+	public String getFirstName() {
+		return firstName;
+	}
+	public String getLastName() {
+		return lastName;
+	}
+	public double getWeeklyDues() {
+		return weeklyDues;
+	}
+	
+	// Setters
+	public void setEmployeeId(int employeeId) {
+		this.employeeId = employeeId;
+	}
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+	public void setWeeklyDues(double weeklyDues) {
+		this.weeklyDues = weeklyDues;
+	}
+
+	// Other Methods
 	public String getFullName() {
 		return lastName + ", " + firstName;
 	}
 	
-	// Constructor
-	
-	public Employee(int employeeId, String firstName, String lastName, double hourlyRate, double weeklyDues) {
-		this.employeeId = employeeId;
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.hourlyRate = hourlyRate;
-		this.weeklyDues = weeklyDues;
-	}
 }

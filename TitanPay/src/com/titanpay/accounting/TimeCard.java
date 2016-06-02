@@ -6,12 +6,45 @@ package com.titanpay.accounting;
 import java.util.Date;
 
 public class TimeCard {
-
+	// Constructor
+	public TimeCard(Date date, double startTime, double endTime) {
+		this.date = date;
+		this.startTime = startTime;
+		this.endTime = endTime;
+	}
+	
 	// Fields
 	private Date date;
 	private double startTime;
 	private double endTime;
 	
+	
+	// Getters
+	public Date getDate() {
+		return date;
+	}
+
+	public double getStartTime() {
+		return startTime;
+	}
+
+	public double getEndTime() {
+		return endTime;
+	}
+
+	// Setters
+	public void setDate(Date date) {
+		this.date = date;
+	}
+
+	public void setStartTime(double startTime) {
+		this.startTime = startTime;
+	}
+
+	public void setEndTime(double endTime) {
+		this.endTime = endTime;
+	}
+
 	// Methods
 	public double calculateDailyPay(double rate) {
 		double hours = endTime - startTime;
@@ -22,9 +55,6 @@ public class TimeCard {
 			return hours * rate;
 	}
 	
-	public TimeCard(Date date, double startTime, double endTime) {
-		this.date = date;
-		this.startTime = startTime;
-		this.endTime = endTime;
-	}
+	
+
 }

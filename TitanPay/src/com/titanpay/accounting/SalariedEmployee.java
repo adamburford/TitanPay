@@ -4,28 +4,36 @@
 
 package com.titanpay.accounting;
 
-public class SalariedEmployee {
-
-	// Fields
-	private int employeeId;
-	private String firstName;
-	private String lastName;
-	private double salary;
-	private double commissionRate;
-	private double weeklyDues;
-	
-	// Methods
-	public String getFullName() {
-		return lastName + ", " + firstName;
-	}
+public class SalariedEmployee extends Employee {
 	
 	// Constructor
-	public SalariedEmployee(int employeeId, String firstName, String lastName, double salary, double commissionRate, double weeklyDues) {
-		this.employeeId = employeeId;
-		this.firstName = firstName;
-		this.lastName = lastName;
+	public SalariedEmployee(int employeeId, String firstName, String lastName, double weeklyDues, double salary, double commissionRate) {
+		super(employeeId, firstName, lastName, weeklyDues);
 		this.salary = salary;
 		this.commissionRate = commissionRate;
-		this.weeklyDues = weeklyDues;
 	}
+		
+	// Fields
+	private double salary;
+	private double commissionRate;
+	
+	/* Methods */
+	
+	// Getters
+	public double getSalary() {
+		return salary;
+	}
+	public double getCommissionRate() {
+		return commissionRate;
+	}
+	
+	
+	// Setters
+	public void setSalary(double salary) {
+		this.salary = salary;
+	}
+	public void setCommissionRate(double commissionRate) {
+		this.commissionRate = commissionRate;
+	}
+	
 }
