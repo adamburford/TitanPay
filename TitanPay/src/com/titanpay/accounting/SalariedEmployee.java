@@ -18,4 +18,14 @@ public class SalariedEmployee {
 	public String getFullName() {
 		return lastName + ", " + firstName;
 	}
+	
+	// Constructor
+	public SalariedEmployee(int employeeId, String firstName, String lastName, double salary, double commissionRate, double weeklyDues) {
+		this.employeeId = employeeId;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.salary = salary;
+		this.commissionRate = commissionRate;
+		this.weeklyDues = weeklyDues;
+	}
 }

@@ -1,13 +1,14 @@
 /* 	Adam Burford SPCID#2128028
  * 	COP2251 -  Java Programming II
  */
-
 package com.titanpay.accounting;
+
+import java.util.Date;
 
 public class TimeCard {
 
 	// Fields
-	private String date;
+	private Date date;
 	private double startTime;
 	private double endTime;
 	
@@ -19,5 +20,11 @@ public class TimeCard {
 			return 8 * rate + ((hours - 8) * (rate * 1.5));
 		else
 			return hours * rate;
+	}
+	
+	public TimeCard(Date date, double startTime, double endTime) {
+		this.date = date;
+		this.startTime = startTime;
+		this.endTime = endTime;
 	}
 }
