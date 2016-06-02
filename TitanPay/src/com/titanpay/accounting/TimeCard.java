@@ -7,7 +7,7 @@ import java.util.Date;
 
 public class TimeCard {
 	// Constructor
-	public TimeCard(Date date, double startTime, double endTime) {
+	public TimeCard(Date date, Date startTime, Date endTime) {
 		this.date = date;
 		this.startTime = startTime;
 		this.endTime = endTime;
@@ -15,8 +15,8 @@ public class TimeCard {
 	
 	// Fields
 	private Date date;
-	private double startTime;
-	private double endTime;
+	private Date startTime;
+	private Date endTime;
 	
 	
 	// Getters
@@ -24,11 +24,11 @@ public class TimeCard {
 		return date;
 	}
 
-	public double getStartTime() {
+	public Date getStartTime() {
 		return startTime;
 	}
 
-	public double getEndTime() {
+	public Date getEndTime() {
 		return endTime;
 	}
 
@@ -37,17 +37,17 @@ public class TimeCard {
 		this.date = date;
 	}
 
-	public void setStartTime(double startTime) {
+	public void setStartTime(Date startTime) {
 		this.startTime = startTime;
 	}
 
-	public void setEndTime(double endTime) {
+	public void setEndTime(Date endTime) {
 		this.endTime = endTime;
 	}
 
 	// Methods
 	public double calculateDailyPay(double rate) {
-		double hours = endTime - startTime;
+		double hours = (endTime.getTime() - startTime.getTime()) / 1000 / 60 / 60;			// Covert milliseconds to hours
 	
 		if (hours > 8)
 			return 8 * rate + ((hours - 8) * (rate * 1.5));
