@@ -4,21 +4,26 @@
 
 package com.titanpay.accounting;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 public class Receipt {
 	// Constructor
-	public Receipt(Date date, double saleAmt) {
+	public Receipt(double saleAmt) {
+		date = LocalDate.now();
+		this.saleAmt = saleAmt;
+	}
+	
+	public Receipt(LocalDate date, double saleAmt) {
 		this.date = date;
 		this.saleAmt = saleAmt;
 	}
 	
 	// Fields
-	private Date date;
+	private LocalDate date;
 	private double saleAmt;
 	
 	// Getters
-	public Date getDate() {
+	public LocalDate getDate() {
 		return date;
 	}
 	public double getSaleAmt() {
@@ -26,14 +31,12 @@ public class Receipt {
 	}
 	
 	// Setters
-	public void setDate(Date date) {
+	public void setDate(LocalDate date) {
 		this.date = date;
 	}
 	public void setSaleAmt(double saleAmt) {
 		this.saleAmt = saleAmt;
 	}
-	
-	
 	
 	// Methods
 	
