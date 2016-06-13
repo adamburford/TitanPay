@@ -7,7 +7,7 @@ package com.titanpay.accounting;
 import java.util.ArrayList;
 import java.time.LocalDate;
 
-public class SalariedEmployee extends Employee implements Payable{
+public class SalariedEmployee extends Employee {
 	
 	// Constructor
 	public SalariedEmployee(int employeeId, String firstName, String lastName, double weeklyDues, double salary, double commissionRate, PaymentMethod paymentMethod) {
@@ -31,22 +31,7 @@ public class SalariedEmployee extends Employee implements Payable{
 	public double getCommissionRate() {
 		return commissionRate;
 	}
-	public int getEmployeeId() {
-		return employeeId;
-	}
-	public String getFirstName() {
-		return firstName;
-	}
-	public String getLastName() {
-		return lastName;
-	}
-	public double getWeeklyDues() {
-		return weeklyDues;
-	}
-	public PaymentMethod getPaymentMethod() {
-		return paymentMethod;
-	}
-	
+
 	// Setters
 	public void setSalary(double salary) {
 		this.salary = salary;
@@ -54,22 +39,7 @@ public class SalariedEmployee extends Employee implements Payable{
 	public void setCommissionRate(double commissionRate) {
 		this.commissionRate = commissionRate;
 	}
-	public void setEmployeeId(int employeeId) {
-		this.employeeId = employeeId;
-	}
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
-	}
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
-	}
-	public void setWeeklyDues(double weeklyDues) {
-		this.weeklyDues = weeklyDues;
-	}
-	public void setPaymentMethod(PaymentMethod paymentMethod) {
-		this.paymentMethod = paymentMethod;
-	}
-	
+
 	// Other Methods
 	public String getFullName() {
 		return lastName + ", " + firstName;

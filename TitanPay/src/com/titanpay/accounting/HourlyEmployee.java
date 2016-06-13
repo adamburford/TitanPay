@@ -3,7 +3,7 @@ package com.titanpay.accounting;
 import java.util.ArrayList;
 import java.time.LocalDate;
 
-public class HourlyEmployee extends Employee implements Payable{
+public class HourlyEmployee extends Employee {
 
 	// Constructor
 	public HourlyEmployee(int employeeId, String firstName, String lastName, double weeklyDues,  double hourlyRate, PaymentMethod paymentMethod) {
@@ -22,50 +22,19 @@ public class HourlyEmployee extends Employee implements Payable{
 	public double getHourlyRate() {
 		return hourlyRate;
 	}
-	public int getEmployeeId() {
-		return employeeId;
-	}
-	public String getFirstName() {
-		return firstName;
-	}
-	public String getLastName() {
-		return lastName;
-	}
-	public double getWeeklyDues() {
-		return weeklyDues;
-	}
-	public PaymentMethod getPaymentMethod() {
-		return paymentMethod;
-	}
-	
-	
+
 	// Setters //
 	public void setHourlyRate(double hourlyRate) {
 		this.hourlyRate = hourlyRate;
 	}
 
-	public void setEmployeeId(int employeeId) {
-		this.employeeId = employeeId;
-	}
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
-	}
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
-	}
-	public void setWeeklyDues(double weeklyDues) {
-		this.weeklyDues = weeklyDues;
-	}
-	public void setPaymentMethod(PaymentMethod paymentMethod) {
-		this.paymentMethod = paymentMethod;
-	}
 	
 	
 	// Other Methods
 	public String getFullName() {
 		return lastName + ", " + firstName;
 	}
-	
+
 	public void clockIn() {
 		timeCards.add(0, new TimeCard());
 	}
@@ -78,7 +47,6 @@ public class HourlyEmployee extends Employee implements Payable{
 		}
 		return false;
 	}
-	
 	public void pay(LocalDate startDate, LocalDate endDate) {
 		double totalPay = 0.0;
 		
