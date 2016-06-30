@@ -3,7 +3,6 @@ package com.titanpay.accounting.view;
 import java.time.LocalDate;
 
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import com.titanpay.accounting.MainApp;
