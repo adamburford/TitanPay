@@ -11,8 +11,8 @@ public class MailPayment extends PaymentMethod {
 	// Fields
 	private String address;
 	
-	public void pay(double amt) {
-		System.out.printf("Mailing a check to " + fullName + "for $%.2f to " + address, amt);
+	public String pay(double amt) {
+		return String.format("Mailing a check to " + fullName + " for $%.2f to " + address, amt);
 	}
 
 }

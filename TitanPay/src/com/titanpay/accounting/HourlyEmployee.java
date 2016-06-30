@@ -12,6 +12,10 @@ public class HourlyEmployee extends Employee {
 		timeCards = new ArrayList<>();
 	}
 	
+	public HourlyEmployee() {
+		timeCards = new ArrayList<>();
+	}
+
 	// Fields
 	private double hourlyRate;
 	private ArrayList<TimeCard> timeCards;
@@ -47,7 +51,7 @@ public class HourlyEmployee extends Employee {
 		}
 		return false;
 	}
-	public void pay(LocalDate startDate, LocalDate endDate) {
+	public String pay(LocalDate startDate, LocalDate endDate) {
 		double totalPay = 0.0;
 		
 		// Sum daily pay using TimeCard.calculateDailyPay() for every day from startDate to endDate inclusive
@@ -58,6 +62,10 @@ public class HourlyEmployee extends Employee {
 			}
 		}
 		
-		paymentMethod.pay(totalPay);
+		return paymentMethod.pay(totalPay);
+	}
+	
+	public void addTimeCard(TimeCard t) {
+		timeCards.add(t);
 	}
 }

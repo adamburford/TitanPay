@@ -16,6 +16,10 @@ public class SalariedEmployee extends Employee {
 		this.commissionRate = commissionRate;
 		receipts = new ArrayList<>();
 	}
+	
+	public SalariedEmployee() {
+		receipts = new ArrayList<>();
+	}
 		
 	// Fields
 	private double salary;
@@ -52,7 +56,7 @@ public class SalariedEmployee extends Employee {
 		receipts.add(0, new Receipt(date, amt));
 	}
 	
-	public void pay(LocalDate startDate, LocalDate endDate) {
+	public String pay(LocalDate startDate, LocalDate endDate) {
 		double totalPay = salary;
 		
 		for (Receipt r : receipts) {
@@ -62,6 +66,10 @@ public class SalariedEmployee extends Employee {
 			}
 		}
 		
-		paymentMethod.pay(totalPay);
+		return paymentMethod.pay(totalPay);
+	}
+	
+	public void addReceipt(Receipt r) {
+		receipts.add(r);
 	}
 }

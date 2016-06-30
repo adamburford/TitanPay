@@ -16,6 +16,8 @@ public abstract class Employee implements Payable {
 		this.weeklyDues = weeklyDues;
 	}
 	
+	public Employee() {	}
+	
 	// Fields
 	protected int employeeId;
 	protected String firstName;
@@ -61,5 +63,5 @@ public abstract class Employee implements Payable {
 	
 	// Other Methods
 	public abstract String getFullName();
-	public abstract void pay(LocalDate startDate, LocalDate endDate);
+	public abstract String pay(LocalDate startDate, LocalDate endDate);
 }

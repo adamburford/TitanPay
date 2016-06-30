@@ -9,15 +9,15 @@ public class DirectDepositPayment extends PaymentMethod {
 		this.accountId = accountId;
 		this.routingNumber = routingNumber;
 	}
-
+	
 	// Fields
 	private String bankName;
 	private int accountId;
 	private int routingNumber;
 
 	
-	public void pay(double amt) {
-		System.out.printf("Depositing $%.2f" + " in " + bankName + " Account Number: " + accountId + " using Routing Number: " + routingNumber, amt);
+	public String pay(double amt) {
+		return String.format("Depositing $%.2f" + " in " + bankName + " Account Number: " + accountId + " using Routing Number: " + routingNumber, amt);
 	}
 
 }

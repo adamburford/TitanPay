@@ -9,6 +9,6 @@ public abstract class PaymentMethod {
 	
 	protected String fullName;
 	
-	public abstract void pay(double amt);
+	public abstract String pay(double amt);
 	
 }

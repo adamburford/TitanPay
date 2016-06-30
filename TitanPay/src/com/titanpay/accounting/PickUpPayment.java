@@ -7,8 +7,8 @@ public class PickUpPayment extends PaymentMethod {
 		super(fullName);
 	}
 	
-	public void pay(double amt) {
-		System.out.printf("A check for $%.2f is waiting for " + fullName + " at the PostMaster.", amt);
+	public String pay(double amt) {
+		return String.format("A check for $%.2f is waiting for " + fullName + " at the PostMaster.", amt);
 	}
 
 }
