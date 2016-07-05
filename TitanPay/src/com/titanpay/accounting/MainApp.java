@@ -123,6 +123,9 @@ public class MainApp extends Application {
     /* Make employee list and generate employees from data files */
     public void loadEmployees() {
     	
+    	processController.outputText.clear();
+    	processController.outputText.appendText("Loading Employees\n");
+    	
     	Scanner s = null;
 
     	// employeeList = new ArrayList<>();
@@ -207,12 +210,17 @@ public class MainApp extends Application {
     	}
     	
     	em.getTransaction().commit();
+    	
+    	processController.outputText.appendText("Employees loaded");
     }
     
     /* Opens the timecard csv file and adds timecards to their respective employee */
 	@SuppressWarnings("unchecked")
     public void loadTimeCards() {
 
+		processController.outputText.clear();
+    	processController.outputText.appendText("Loading Timecards\n");
+		
     	EntityManager em = factory.createEntityManager();
     	Query q = em.createQuery("select t from Employee t");
         employeeList = q.getResultList();
@@ -256,12 +264,18 @@ public class MainApp extends Application {
     	}
     	
     	em.getTransaction().commit();
+    	
+    	processController.outputText.appendText("Timecards loaded");
     }
     
     /* Opens the receipts csv file and adds receipts to their respective employee */
 	@SuppressWarnings("unchecked")
 	public void loadReceipts() {
-    	EntityManager em = factory.createEntityManager();
+    	
+		processController.outputText.clear();
+    	processController.outputText.appendText("Loading Receipts\n");
+		
+		EntityManager em = factory.createEntityManager();
     	Query q = em.createQuery("select t from Employee t");
         employeeList = q.getResultList();
         em.getTransaction().begin();
@@ -305,5 +319,6 @@ public class MainApp extends Application {
     	}
     	
     	em.getTransaction().commit();
+    	processController.outputText.appendText("Receipts loaded");
     }
 }
