@@ -9,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity
 public class HourlyEmployee extends Employee {
@@ -56,7 +57,7 @@ public class HourlyEmployee extends Employee {
 	}
 
 	public void clockIn() {
-		timeCards.add(0, new TimeCard());
+		timeCards.add(0, new TimeCard(LocalDateTime.now()));
 	}
 	public boolean clockOut() {
 		for (TimeCard t : timeCards) {

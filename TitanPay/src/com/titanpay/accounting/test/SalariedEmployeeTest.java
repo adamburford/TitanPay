@@ -64,10 +64,6 @@ public class SalariedEmployeeTest {
 		String payResult2 = testEmployee2.pay(startDate, endDate);
 		String payResult3 = testEmployee3.pay(startDate, endDate);
 		
-		System.out.println(payResult1);
-		System.out.println(payResult2);
-		System.out.println(payResult3);
-
 		// Assert //
 		
 		String expectedResult1 = "A check for $100100.00 is waiting for Burford, Adam at the PostMaster.";

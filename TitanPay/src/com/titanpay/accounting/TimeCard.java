@@ -35,6 +35,11 @@ public class TimeCard {
 	public TimeCard(LocalDate date) {
 		this.date = date;
 	}
+	public TimeCard(LocalDateTime startTime) {
+		this.date = LocalDate.now();
+		this.startTime = startTime;
+	}
+	
 	public TimeCard(LocalDate date, LocalDateTime startTime) {
 		this.date = date;
 		this.startTime = startTime;
