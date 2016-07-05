@@ -20,8 +20,15 @@
             <ListView prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
          </right>
          <center>
-            <SplitPane dividerPositions="0.5" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0" BorderPane.alignment="CENTER">
+            <SplitPane dividerPositions="0.5, 0.5" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0" BorderPane.alignment="CENTER">
               <items>
+                  <AnchorPane maxHeight="100.0" prefHeight="200.0" prefWidth="200.0">
+                     <children>
+                        <Button layoutX="119.0" layoutY="38.0" mnemonicParsing="false" onAction="#importEmployees" text="Import Employees" />
+                        <Button layoutX="340.0" layoutY="38.0" mnemonicParsing="false" onAction="#importTimeCards" text="Import Time Cards" />
+                        <Button layoutX="603.0" layoutY="38.0" mnemonicParsing="false" onAction="#importReceipts" text="Import Receipts" />
+                     </children>
+                  </AnchorPane>
                 <AnchorPane maxHeight="100.0" minHeight="100.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                      <children>
                         <Button fx:id="processButton" layoutX="54.0" layoutY="38.0" mnemonicParsing="false" onAction="#processPayroll" text="Process Payroll" />

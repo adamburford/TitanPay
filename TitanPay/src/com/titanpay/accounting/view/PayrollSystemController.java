@@ -46,6 +46,22 @@ public class PayrollSystemController {
     		
     }
     
+    @FXML
+    private void importEmployees() {
+    	mainApp.loadEmployees();
+    }
+    
+    @FXML
+    private void importTimeCards() {
+    	mainApp.loadTimeCards();
+    }
+    
+    @FXML
+    private void importReceipts() {
+    	mainApp.loadReceipts();
+  
+    }
+    
     public void setMainApp(MainApp mainApp) {
     	this.mainApp = mainApp;
     }

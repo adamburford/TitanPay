@@ -1,6 +1,9 @@
 package com.titanpay.accounting;
 
-public abstract class PaymentMethod {
+import javax.persistence.Entity;
+
+@Entity
+public abstract class PaymentMethod implements java.io.Serializable{
 
 	// Constructor
 	public PaymentMethod(String fullName) {

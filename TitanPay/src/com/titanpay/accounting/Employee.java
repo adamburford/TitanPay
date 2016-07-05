@@ -6,7 +6,22 @@ package com.titanpay.accounting;
 
 import java.time.LocalDate;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
 public abstract class Employee implements Payable {
+
+	// Fields
+	@Id
+	@GeneratedValue(strategy = GenerationType.TABLE)
+	protected int employeeId;
+	protected String firstName;
+	protected String lastName;
+	protected double weeklyDues;
+	protected PaymentMethod paymentMethod;
 
 	// Constructor
 	public Employee(int employeeId, String firstName, String lastName, double weeklyDues, PaymentMethod paymentMethod) {
@@ -17,13 +32,6 @@ public abstract class Employee implements Payable {
 	}
 	
 	public Employee() {	}
-	
-	// Fields
-	protected int employeeId;
-	protected String firstName;
-	protected String lastName;
-	protected double weeklyDues;
-	protected PaymentMethod paymentMethod;
 	
 	/* Methods */
 	

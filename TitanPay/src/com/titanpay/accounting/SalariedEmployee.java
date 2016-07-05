@@ -5,9 +5,25 @@
 package com.titanpay.accounting;
 
 import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+
 import java.time.LocalDate;
 
+@Entity
 public class SalariedEmployee extends Employee {
+	
+	// Fields
+	@Id
+	@GeneratedValue(strategy = GenerationType.TABLE)
+	private double salary;
+	private double commissionRate;
+	private List<Receipt> receipts;
 	
 	// Constructor
 	public SalariedEmployee(int employeeId, String firstName, String lastName, double weeklyDues, double salary, double commissionRate, PaymentMethod paymentMethod) {
@@ -21,10 +37,7 @@ public class SalariedEmployee extends Employee {
 		receipts = new ArrayList<>();
 	}
 		
-	// Fields
-	private double salary;
-	private double commissionRate;
-	private ArrayList<Receipt> receipts;
+	
 	
 	/* Methods */
 	

@@ -1,10 +1,25 @@
 package com.titanpay.accounting;
 
 import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+
 import java.time.LocalDate;
 
+@Entity
 public class HourlyEmployee extends Employee {
-
+	
+	// Fields
+	@Id
+	@GeneratedValue(strategy = GenerationType.TABLE)
+	private double hourlyRate;
+	private List<TimeCard> timeCards;
+	
 	// Constructor
 	public HourlyEmployee(int employeeId, String firstName, String lastName, double weeklyDues,  double hourlyRate, PaymentMethod paymentMethod) {
 		super(employeeId, firstName, lastName, weeklyDues, paymentMethod);
@@ -16,9 +31,7 @@ public class HourlyEmployee extends Employee {
 		timeCards = new ArrayList<>();
 	}
 
-	// Fields
-	private double hourlyRate;
-	private ArrayList<TimeCard> timeCards;
+	
 	
 	/* Methods */
 	
@@ -32,8 +45,6 @@ public class HourlyEmployee extends Employee {
 		this.hourlyRate = hourlyRate;
 	}
 
-	
-	
 	// Other Methods
 	public String getFullName() {
 		return lastName + ", " + firstName;

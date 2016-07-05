@@ -20,11 +20,18 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+import javax.persistence.Query;
+
 public class MainApp extends Application {
 
     private Stage primaryStage;
     private AnchorPane rootLayout;
     private PayrollSystemController processController;
+    private static final String PERSISTENCE_UNIT_NAME = "titanpay";
+    private static EntityManagerFactory factory;
     
     private List<Employee> employeeList;
 
@@ -68,14 +75,39 @@ public class MainApp extends Application {
 
     public static void main(String[] args) {
 
+    	factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
+        EntityManager em = factory.createEntityManager();
+    	
+        	/*
+        em.getTransaction().begin();
+        HourlyEmployee test = new HourlyEmployee();
+        test.setEmployeeId(3);
+        test.setFirstName("Adam");
+        test.setLastName("Burford");
+        TimeCard t = new TimeCard();
+        em.persist(t);
+        test.addTimeCard(t);
+        em.persist(test);
+        
+        SalariedEmployee test2 = new SalariedEmployee();
+        em.persist(test2);
+        em.getTransaction().commit();
+        
+        Query q = em.createQuery("select t from Employee t");
+        List<Employee> todoList = q.getResultList();
+        for (Employee todo : todoList) {
+          System.out.println(todo);
+        }
+        System.out.println("Size: " + todoList.size());
+        */
+        
     	launch(args);
     }
     
     public void processPayroll() {
-    	
-    	loadEmployees();
-    	loadTimeCards();
-    	loadReceipts();
+    	EntityManager em = factory.createEntityManager();
+    	Query q = em.createQuery("select t from Employee t");
+        employeeList = q.getResultList();
     	
     	LocalDate startDate = LocalDate.parse("2016-06-20");
     	LocalDate endDate = LocalDate.parse("2016-06-26");
@@ -88,10 +120,13 @@ public class MainApp extends Application {
     }
     
     /* Make employee list and generate employees from data files */
-    private void loadEmployees() {
+    public void loadEmployees() {
+    	
     	Scanner s = null;
 
-    	employeeList = new ArrayList<>();
+    	// employeeList = new ArrayList<>();
+    	EntityManager em = factory.createEntityManager();
+    	em.getTransaction().begin();
     	
     	// Hourly Employee File
     	try {
@@ -116,8 +151,8 @@ public class MainApp extends Application {
     			else
     				e.setPaymentMethod(new MailPayment(e.getFullName(), "6605 5TH AVE N, SAINT PETERSBURG FL 33710"));
 
-    			
-    			employeeList.add(e);
+    			em.merge(e);
+    			//employeeList.add(e);
     			s.nextLine();
     		}
     	}
@@ -160,7 +195,8 @@ public class MainApp extends Application {
     				e.setPaymentMethod(new MailPayment(e.getFullName(), "6605 5TH AVE N, SAINT PETERSBURG FL 33710"));
     			}
     			
-    			employeeList.add(e);
+    			em.merge(e);
+    			//employeeList.add(e);
     		}
     	}
     	catch (FileNotFoundException e) {System.out.println("File Open Error");}
@@ -168,11 +204,18 @@ public class MainApp extends Application {
     		if (s != null)
     			s.close();
     	}
+    	
+    	em.getTransaction().commit();
     }
     
     /* Opens the timecard csv file and adds timecards to their respective employee */
-    private void loadTimeCards() {
+    public void loadTimeCards() {
 
+    	EntityManager em = factory.createEntityManager();
+    	Query q = em.createQuery("select t from Employee t");
+        employeeList = q.getResultList();
+        em.getTransaction().begin();
+    	
     	Scanner s = null;
     	
     	try {
@@ -195,7 +238,10 @@ public class MainApp extends Application {
     			
     			for (Employee e : employeeList) {
     				if (e.getEmployeeId() == employeeId) {
-    					((HourlyEmployee)e).addTimeCard(new TimeCard(day, timein, timeout));
+    					TimeCard t = new TimeCard(day, timein, timeout);
+    					em.merge(t);
+    					((HourlyEmployee)e).addTimeCard(t);
+    					em.persist(e);
     					break;
     				}
     			}
@@ -206,10 +252,17 @@ public class MainApp extends Application {
     		if (s != null)
     			s.close();
     	}
+    	
+    	em.getTransaction().commit();
     }
     
     /* Opens the receipts csv file and adds receipts to their respective employee */
-    private void loadReceipts() {
+    public void loadReceipts() {
+    	EntityManager em = factory.createEntityManager();
+    	Query q = em.createQuery("select t from Employee t");
+        employeeList = q.getResultList();
+        em.getTransaction().begin();
+    	
     	Scanner s = null;
     	
     	try {
@@ -231,10 +284,12 @@ public class MainApp extends Application {
     			double amount = Double.parseDouble(str.trim());
     			
     			Receipt r = new Receipt(LocalDate.parse("2016-06-20"), amount);
+    			em.persist(r);
     			
     			for (Employee e : employeeList) {
     				if (e.getEmployeeId() == i) {
     					((SalariedEmployee)e).addReceipt(r);
+    					em.merge(e);
     					break;
     				}
     			}		
@@ -245,5 +300,7 @@ public class MainApp extends Application {
     		if (s != null)
     			s.close();
     	}
+    	
+    	em.getTransaction().commit();
     }
 }
