@@ -7,7 +7,6 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -76,7 +75,7 @@ public class MainApp extends Application {
     public static void main(String[] args) {
 
     	factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
-        EntityManager em = factory.createEntityManager();
+        //EntityManager em = factory.createEntityManager();
     	
         	/*
         em.getTransaction().begin();
@@ -104,10 +103,12 @@ public class MainApp extends Application {
     	launch(args);
     }
     
+	@SuppressWarnings("unchecked")
     public void processPayroll() {
     	EntityManager em = factory.createEntityManager();
     	Query q = em.createQuery("select t from Employee t");
-        employeeList = q.getResultList();
+       
+    	employeeList = q.getResultList();
     	
     	LocalDate startDate = LocalDate.parse("2016-06-20");
     	LocalDate endDate = LocalDate.parse("2016-06-26");
@@ -149,7 +150,7 @@ public class MainApp extends Application {
     			else if (str == "PU")
     				e.setPaymentMethod(new PickUpPayment(e.getFullName()));
     			else
-    				e.setPaymentMethod(new MailPayment(e.getFullName(), "6605 5TH AVE N, SAINT PETERSBURG FL 33710"));
+    				e.setPaymentMethod(new MailPayment(e.getFullName(), new Address("6605 5TH AVE N", "SAINT PETERSBURG", "FL", 33710)));
 
     			em.merge(e);
     			//employeeList.add(e);
@@ -192,7 +193,7 @@ public class MainApp extends Application {
     			}
     			else {
 
-    				e.setPaymentMethod(new MailPayment(e.getFullName(), "6605 5TH AVE N, SAINT PETERSBURG FL 33710"));
+    				e.setPaymentMethod(new MailPayment(e.getFullName(), new Address("6605 5TH AVE N", "SAINT PETERSBURG", "FL", 33710)));
     			}
     			
     			em.merge(e);
@@ -209,6 +210,7 @@ public class MainApp extends Application {
     }
     
     /* Opens the timecard csv file and adds timecards to their respective employee */
+	@SuppressWarnings("unchecked")
     public void loadTimeCards() {
 
     	EntityManager em = factory.createEntityManager();
@@ -257,7 +259,8 @@ public class MainApp extends Application {
     }
     
     /* Opens the receipts csv file and adds receipts to their respective employee */
-    public void loadReceipts() {
+	@SuppressWarnings("unchecked")
+	public void loadReceipts() {
     	EntityManager em = factory.createEntityManager();
     	Query q = em.createQuery("select t from Employee t");
         employeeList = q.getResultList();

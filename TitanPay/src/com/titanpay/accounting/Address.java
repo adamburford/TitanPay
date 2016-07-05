@@ -4,7 +4,7 @@
 
 package com.titanpay.accounting;
 
-public class Address {
+public class Address implements java.io.Serializable {
 	// Constructor
 	public Address(String streetAddress, String city, String state, int zip) {
 		this.streetAddress = streetAddress;
@@ -18,6 +18,7 @@ public class Address {
 	private String city;
 	private String state;
 	private int zip;
+	private static final long serialVersionUID = 1337L;
 	
 	// Getters
 	public String getStreetAddress() {
@@ -52,5 +53,7 @@ public class Address {
 		return streetAddress + ' ' + city + ", " + state + ' ' + zip;
 	}
 	
-
+	public String toString() {
+		return streetAddress + ' ' + city + ", " + state + ' ' + zip;
+	}
 }

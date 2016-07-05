@@ -7,7 +7,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 
 import java.time.LocalDate;
 
@@ -23,6 +22,12 @@ public class HourlyEmployee extends Employee {
 	// Constructor
 	public HourlyEmployee(int employeeId, String firstName, String lastName, double weeklyDues,  double hourlyRate, PaymentMethod paymentMethod) {
 		super(employeeId, firstName, lastName, weeklyDues, paymentMethod);
+		this.hourlyRate = hourlyRate;
+		timeCards = new ArrayList<>();
+	}
+	
+	public HourlyEmployee(int employeeId, String firstName, String lastName, double weeklyDues,  double hourlyRate) {
+		super(employeeId, firstName, lastName, weeklyDues);
 		this.hourlyRate = hourlyRate;
 		timeCards = new ArrayList<>();
 	}
@@ -72,11 +77,15 @@ public class HourlyEmployee extends Employee {
 				totalPay += t.calculateDailyPay(hourlyRate);
 			}
 		}
-		
+
 		return paymentMethod.pay(totalPay);
 	}
 	
 	public void addTimeCard(TimeCard t) {
-		timeCards.add(t);
+		timeCards.add(0, t);
+	}
+	
+	public List<TimeCard> getTimeCards() {
+		return timeCards;
 	}
 }

@@ -11,4 +11,5 @@ public class PickUpPayment extends PaymentMethod {
 		return String.format("A check for $%.2f is waiting for " + fullName + " at the PostMaster.", amt);
 	}
 
+	private static final long serialVersionUID = 1337L;
 }

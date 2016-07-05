@@ -14,6 +14,7 @@ public class DirectDepositPayment extends PaymentMethod {
 	private String bankName;
 	private int accountId;
 	private int routingNumber;
+	private static final long serialVersionUID = 1337L;
 
 	
 	public String pay(double amt) {

@@ -30,8 +30,7 @@ public class TimeCard {
 	
 	// Makes a new time card with the current time as startTime and the current day as date
 	public TimeCard() {
-		this.startTime = LocalDateTime.now();
-		this.date = startTime.toLocalDate();
+		this.date = LocalDate.now();
 	}
 	public TimeCard(LocalDate date) {
 		this.date = date;

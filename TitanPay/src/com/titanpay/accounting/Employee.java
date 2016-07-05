@@ -22,13 +22,32 @@ public abstract class Employee implements Payable {
 	protected String lastName;
 	protected double weeklyDues;
 	protected PaymentMethod paymentMethod;
+	protected Address address;
 
 	// Constructor
+	public Employee(int employeeId, String firstName, String lastName, double weeklyDues) {
+		this.employeeId = employeeId;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.weeklyDues = weeklyDues;
+		this.paymentMethod = new PickUpPayment(this.getFullName());
+	}
+	
 	public Employee(int employeeId, String firstName, String lastName, double weeklyDues, PaymentMethod paymentMethod) {
 		this.employeeId = employeeId;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.weeklyDues = weeklyDues;
+		this.paymentMethod = paymentMethod;
+	}
+	
+	public Employee(int employeeId, String firstName, String lastName, double weeklyDues, PaymentMethod paymentMethod, Address address) {
+		this.employeeId = employeeId;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.weeklyDues = weeklyDues;
+		this.paymentMethod = paymentMethod;
+		this.address = address;
 	}
 	
 	public Employee() {	}

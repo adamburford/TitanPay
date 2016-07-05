@@ -11,7 +11,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 
 import java.time.LocalDate;
 
@@ -33,11 +32,16 @@ public class SalariedEmployee extends Employee {
 		receipts = new ArrayList<>();
 	}
 	
+	public SalariedEmployee(int employeeId, String firstName, String lastName, double weeklyDues, double salary, double commissionRate) {
+		super(employeeId, firstName, lastName, weeklyDues);
+		this.salary = salary;
+		this.commissionRate = commissionRate;
+		receipts = new ArrayList<>();
+	}
+	
 	public SalariedEmployee() {
 		receipts = new ArrayList<>();
 	}
-		
-	
 	
 	/* Methods */
 	
@@ -84,5 +88,9 @@ public class SalariedEmployee extends Employee {
 	
 	public void addReceipt(Receipt r) {
 		receipts.add(r);
+	}
+	
+	public List<Receipt> getReceipts() {
+		return receipts;
 	}
 }
